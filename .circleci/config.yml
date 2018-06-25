@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  branch_tag_check:
+  build:
     docker:
       - image: circleci/ruby
     steps:
