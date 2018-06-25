@@ -1,28 +1,9 @@
 version: 2
 jobs:
   branch_tag_check:
-    machine: true
+    docker:
+      - image: circleci/ruby
     steps:
       - checkout
-      - run:
-          name: check if branch AND tag conditions are met
-          command: |
-            if [[ ! ($CIRCLE_BRANCH == "test" && $CIRCLE_TAG == "test3") ]]
-            then
-              exit 1
-            else
-              echo "rest of jobs can proceed"
-            fi
-
-  rest_of_jobs:
-    machine: true
-    steps:
-      - checkout
-      - run: echo "blah"
-
-workflows:
-  version: 2
-  create_branch&&tag_filter:
-    jobs:
-      - branch_tag_check
-      - rest_of_jobs
+      - setup_remote_docker
+      - run: ssh remote-docker && echo "blahblahblah" > test && cat test && pwd
