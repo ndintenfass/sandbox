@@ -6,4 +6,4 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: ssh remote-docker echo "blahblahblah" > test && cat test && pwd
+      - run: ssh remote-docker pwd
